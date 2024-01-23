@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+<!--Inicio del contenedor-->
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <!--contenedor 2-->
+        <div class="col-8">
+            <!--Inicio carrusel -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <!-- Agrega un nuevo indicador para la nueva imagen -->
+                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                </ol>
+        
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <!--usando mx-auto para centrar la imagen-->
+                      <a href="mochilas.html" title="Mochila kawaii">
+                        <img src="{% static "imagenes/mochila.jpg" %}"  class="mx-auto  d-block w-75 h-75" alt="">
+                      </a>
+                    </div>
+
+                    <div class="carousel-item">
+                      <a href="carteras.html" title="cartera">
+                        <img src="{% static "imagenes/cartera_negra.jpeg" %}" class="mx-auto  d-block w-75 h-75" alt="">
+                      </a>
+                    </div>
+
+                    <div class="carousel-item">
+                      <a href="carteras.html" title="cartera">
+                        <img src="{% static "imagenes/cartera_marron.jpg" %}"  class="mx-auto d-block w-75 h-75" alt="">
+                      </a>
+                    </div>
+
+                    <!-- Agrega la nueva imagen -->
+                    <div class="carousel-item">
+                      <a href="bandoleras.html" title="bandolera">
+                        <img src="{% static "imagenes/bandolera_rosa.jpg" %}" class="mx-auto d-block w-75 h-75" alt="">
+                      </a>
+                    </div>
+
+                </div>
+        
+                <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </button>
+            </div>
+            <!--fin carrusel-->
+            <br>
+            <br>
+            <!--video-->
+            <h3 class="titulovideo"> Conocenos mas </h3>
+            <video controls width="50%" height="50%">
+              <source src="{% static "imagenes/video_maremi.mp4" %}" type="video/mp4">
+            </video>
+
+        </div>
+        <!--fin de conteiner del 2 -->
+
+        <div class="col-2"></div>
+    </div>
+       
+ </div>
+ {% endblock %}
+ <!--fin de conteiner -->
