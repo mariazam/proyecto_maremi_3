@@ -13,6 +13,7 @@ urlpatterns = [
     path('mantenedor/modificar_producto/<id_buscado>/', modificar_producto, name="modificar_producto"),
     path('mantenedor/eliminar_producto/<id_buscado>/',  eliminar_producto, name="eliminar_producto"),
     path('login_usuario/', login_usuario, name='login_usuario'),
+    path('registro/', registro, name='registro'),
   
 
 ]

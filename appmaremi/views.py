@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ContactoForm, ProductoForm
 from .models import Producto
 
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User, Group
+
 # Create your views here.
 def home(request):
     return render(request, "index.html")
@@ -91,8 +94,41 @@ def eliminar_producto(request, id_buscado):
 
     return redirect(to= "listar_producto")
 
+
 def login_usuario(request):
     print("Bienvenido:"+ request.user.username)
     return redirect(to="home")
- 
 
+def registro(request):
+    data = {
+        "mensaje": ""
+    }
+
+    if request.method == "POST":
+
+        nombre = request.POST.get("nombre")
+        apellido = request.POST.get("apellido")
+        correo = request.POST.get("correo")
+        password = request.POST.get("password")
+
+        usu = User()
+        usu.set_password(password) 
+        usu.username = nombre
+        usu.email = correo
+        usu.first_name = nombre
+        usu.last_name = apellido
+
+        grupoVen = Group.objects.get(name="vendedor")
+
+        try:
+            usu.save()
+            usu.groups.add(grupoVen)
+
+            user = authenticate(username=usu.username, password=password)
+            login(request, user)
+            return redirect(to="home")
+
+        except:
+            data["mensaje"] = "Error Creado"
+
+    return render(request, "registration/registro.html", data)

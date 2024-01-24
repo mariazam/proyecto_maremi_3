@@ -9,6 +9,6 @@ class ProductoAdmin(admin.ModelAdmin):
     list_filter= ['categoria']
 
 admin.site.register(Categoria)
-admin.site.register(vendedor)
+admin.site.register(Vendedor)
 admin.site.register(Producto, ProductoAdmin)
 admin.site.register(Contacto)

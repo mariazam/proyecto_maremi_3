@@ -8,7 +8,7 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombre
     
-class vendedor(models.Model):
+class Vendedor(models.Model):
     rut = models.CharField(max_length=10)
     nombre = models.CharField(max_length=80)
     apellido = models.CharField(max_length=80)

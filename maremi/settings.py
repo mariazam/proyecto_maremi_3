@@ -33,6 +33,7 @@ LOGIN_REDIRECT_URL = '/login_usuario'
 
 LOGOUT_REDIRECT_URL = '/'
 
+LOGIN_URL = 'nombre_de_la_vista_de_inicio_de_sesion'
 
 # Application definition
 
