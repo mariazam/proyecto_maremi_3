@@ -85,17 +85,24 @@
     <!-- Enlace de login -->
     <ul class="navbar-nav">
       <li class="nav-item">
-          {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
+          {% if user.username == "admin" %}
             <div class="d-flex">
               <a class="nav-link" href="{% url 'logout'%}"><button type="button" class="btn btn-primary">Cerrar Sesión</button></a>
-              <button type="button" class="btn btn-success my-2 my-sm-0 btn-sm">Bienvenido {{ user.username }}</button>
+              <a class="btn bg-light text-secondary" href="{% url 'vista_administrador' %}"><h4 style= "font-family: 'Lobster', Castellar;" >{{user.username}}</h4></a>
             </div>
-          {%else %}
+          {% else %}
             <div class="d-flex">
-              <a class="nav-link" href="{% url 'login'%}"><button type="button" class="btn btn-warning">Login</button></a>
+              <a class="nav-link" href="{% url 'logout'%}"><button type="button" class="btn btn-primary">Cerrar Sesión</button></a>
+              <a class="btn bg-light text-secondary" href="{% url 'vista_vendedor' %}"><h4 style= "font-family: 'Lobster', Castellar;" >{{user.username}}</h4></a>
             </div>
           {% endif %}
-      </li>
+        {% else %}
+          <div class="d-flex">
+            <a class="nav-link" href="{% url 'login'%}"><button type="button" class="btn btn-warning">Login</button></a>
+          </div>
+        {% endif %}
+        </li>
     </ul>
 
   </div>
@@ -103,18 +110,6 @@
 
 <!--FIN DEL Menu-->
     <main>
-
-      {% if messages %}
-        {% for m in messages %}
-            <script>
-                Swal.fire({
-                    "title": "Mensaje",
-                    "text": "{{m}}",
-                    "icon": "success"
-                });
-            </script>
-        {% endfor %}
-      {% endif %}
 
       <div id="contenido">
           {% block contenido %}

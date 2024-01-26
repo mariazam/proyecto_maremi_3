@@ -5,7 +5,7 @@ from .views import *
 urlpatterns = [
     path('home/', home, name="home"),
     path('', home, name="home"),
-    path('productos', productos, name="productos"),
+    path('productos/', listar_productos2, name='productos'),
     path('contacto', contacto, name="contacto"),
     path('login', login, name="login"),
     path('mantenedor/agregar_producto/', agregar_producto, name="agregar_producto"),
@@ -14,7 +14,9 @@ urlpatterns = [
     path('mantenedor/eliminar_producto/<id_buscado>/',  eliminar_producto, name="eliminar_producto"),
     path('login_usuario/', login_usuario, name='login_usuario'),
     path('registro/', registro, name='registro'),
-    path('administrador/', administrador, name='administrador'),
+    path('administrador/', administrador, name='vista_administrador'),
+    path('vendedor/', vendedor, name='vista_vendedor'),
+    path('detalleProductos/<int:producto_id>/', detalleProductos, name='detalleProductos'),
   
 
 ]

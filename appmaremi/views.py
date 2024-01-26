@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required, permission_required
 
+
 # Create your views here.
 def home(request):
 
@@ -159,3 +160,31 @@ def registro(request):
 def administrador(request):
 
     return render(request, "administrador.html")
+
+#vista del administrador
+def vendedor(request):
+
+    return render(request, "vendedor.html")
+
+
+#Metodo para poder distingir los usuarios logiados
+#este metodo ayuda a distingir si el usuario es vendedor o admin a
+#pero no funciona 
+
+def tu_vista(request):
+    # ... tu lógica para obtener el usuario
+
+    es_administrador = request.user.groups.filter(name='administrador').exists()
+
+    return render(request, 'administrador.html', {'es_administrador': es_administrador})
+
+
+
+def listar_productos2(request):
+    productos = Producto.objects.all()
+    return render(request, "productos.html", {'productos': productos})
+
+#vista del administrador
+def detalleProductos(request, producto_id):
+    producto = get_object_or_404(Producto, pk=producto_id)
+    return render(request, 'detalle_productos.html', {'producto': producto})
