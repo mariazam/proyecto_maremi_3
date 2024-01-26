@@ -29,6 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#para importar los mensajes que sean visibles en la aplicacion 
+MESSAGE_STORAGE= "django.contrib.messages.storage.cookie.CookieStorage"
+
 LOGIN_REDIRECT_URL = '/login_usuario'
 
 LOGOUT_REDIRECT_URL = '/'

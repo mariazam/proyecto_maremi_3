@@ -73,3 +73,23 @@ function limpiarFormulario() {
 
 
 //Fin de la validacion contacto
+
+
+//Mensaje del mantenedor eliminar
+function eliminarProducto(id)
+{
+    Swal.fire({
+        "title": "Advertencia",
+        "text": "¿Estas seguro que deseas Eliminar este producto?",
+        "icon": "question",
+        "showCancelButton": true,
+        "cancelButtonText": "NO, Cancelar",
+        "confirmButtonText": "SI, Eliminar"
+    }).then(function(result){
+        if(result.isConfirmed){
+
+            window.location.href= "/mantenedor/eliminar_producto/"+id+"/";
+        }
+
+    })
+}

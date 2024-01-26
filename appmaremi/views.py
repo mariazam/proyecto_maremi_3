@@ -1,17 +1,24 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ContactoForm, ProductoForm
 from .models import Producto
+from django.contrib import messages
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 def home(request):
+
+    messages.success(request, "este es mi primer")
+
     return render(request, "index.html")
 
 def productos(request):
     return render(request, "productos.html")
 
+#vista contanto save() si la persona envia algo entra al post y lo guarda
+#si no envia un mensaje de error y lo vuelve a dirijir a la vista del contacto
 def contacto(request):
     data ={
         "form_contacto": ContactoForm,
@@ -34,10 +41,14 @@ def contacto(request):
     return render(request, "contacto.html", data)
 
     
-
+#vista login
 def login(request):
     return render(request, "login.html")
 
+#login_required=restrinje que alguien que no tenga permiso entre a la pg y lo dirije al login
+#permission_required = restrinje que alguien que no tenga permiso entre a la pg y lo dirije al login que solo pueda el admin
+@login_required(login_url="login")
+@permission_required(['appmaremi.add_producto'], login_url="login")
 def agregar_producto(request):
     data = {
         'form': ProductoForm
@@ -56,16 +67,23 @@ def agregar_producto(request):
 
     return render(request, "mantenedor/producto/agregar.html", data)
 
+#login_required=restrinje que alguien que no tenga permiso entre a la pg y lo dirije al login
+#permission_required = restrinje que alguien que no tenga permiso entre a la pg y lo dirije al login que solo pueda el admin
+@login_required(login_url="login")
+@permission_required(['appmaremi.add_producto'], login_url="login")
 def listar_producto(request):
     productos= Producto.objects.all()
+
     data = {
         'mis_productos' : productos
     }
 
-
-
     return render(request, "mantenedor/producto/listar.html", data)
 
+#login_required=restrinje que alguien que no tenga permiso entre a la pg y lo dirije al login
+#permission_required = restrinje que alguien que no tenga permiso entre a la pg y lo dirije al login que solo pueda el admin
+@login_required(login_url="login")
+@permission_required(['appmaremi.add_producto'], login_url="login")
 def modificar_producto(request, id_buscado):
 
     productos= get_object_or_404(Producto, id=id_buscado)
@@ -86,6 +104,7 @@ def modificar_producto(request, id_buscado):
 
     return render(request, "mantenedor/producto/modificar.html", data)
 
+#este  se usa en el listar
 def eliminar_producto(request, id_buscado):
 
     productos= get_object_or_404(Producto, id=id_buscado)
@@ -94,12 +113,14 @@ def eliminar_producto(request, id_buscado):
 
     return redirect(to= "listar_producto")
 
-
+#cuando se loguean muestra el mensaje del nombre de quien se a logiado y lo dirije al home
 def login_usuario(request):
     print("Bienvenido:"+ request.user.username)
     return redirect(to="home")
 
+#metodo de registrar
 def registro(request):
+
     data = {
         "mensaje": ""
     }
@@ -132,3 +153,9 @@ def registro(request):
             data["mensaje"] = "Error Creado"
 
     return render(request, "registration/registro.html", data)
+
+
+#vista del administrador
+def administrador(request):
+
+    return render(request, "administrador.html")
