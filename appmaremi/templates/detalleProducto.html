@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block contenido %}
+
+    <h2 class="titulo">Producto</h2>
+
+    <!-- Imagen del producto -->
+<section class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <img src="{{ producto.foto.url }}" class="d-block w-100 rounded" alt="...">
+        </div>
+    </div>
+</section>
+
+<!-- Información del producto -->
+<section class="container">
+    <div class="row">
+        <div class="my-2">
+            <h3 class="text-warning fw-bold">
+                {{ producto.categoria }}
+            </h3>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-danger text-bg-dark fw-bold rounded">
+                    {{ producto.titulo }}
+                </h1>
+
+                <hr>
+                
+                <h3 class="text-warning fw-bold">
+                    {{ producto.precio }}
+                </h3>
+                
+                <hr>
+                
+                <h3 class="text-warning fw-bold">
+                    {{ producto.mensaje }}
+                </h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock %}
