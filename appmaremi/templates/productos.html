@@ -7,15 +7,15 @@
   <div id="profesionales_excelencia" class="row">
       <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="cont-listado row">
-            {% for producto in productos %}
-            {% if producto.estado == 1 %}
+            {% for prod in productos %}
+            {% if prod.estado == 1 %}
                 <figure>
-                    <a href="{% url 'detalleProductos' producto.id %}">
-                        <img width="270" height="350" src="{{ producto.foto.url }}" class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
+                    <a href="{% url 'detalleProducto' prod.id %}">
+                        <img width="270" height="350" src="{{ prod.foto.url }}" class="img-responsive wp-post-image" alt="" decoding="async" loading="lazy">
                     </a>
-                    <h4 class="nombre white">{{ producto.titulo }}</h4>
-                    <h4 class="nombre white text-danger">{{ producto.categoria }}</h4>
-                    <h4 class="nombre white">Precio: {{ producto.precio }}</h4>
+                    <h4 class="nombre white">{{ prod.titulo }}</h4>
+                    <h4 class="nombre white text-danger">{{ prod.categoria }}</h4>
+                    <h4 class="nombre white">Precio: {{ prod.precio }}</h4>
                 </figure>
             {% endif %}
             {% endfor %}

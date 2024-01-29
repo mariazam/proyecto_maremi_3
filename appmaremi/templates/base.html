@@ -24,6 +24,7 @@
 
 <!--Inicio del menu-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
   <a class="navbar-brand" href="{% url 'home' %}">
     <img src="{% static "imagenes/logo.jpg" %}"  class="d-block rounded" alt="" width="75px"> 
   </a>
@@ -49,11 +50,15 @@
           Categoria
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="carteras.html">Cartera</a>
-          <a class="dropdown-item" href="mochilas.html">Mochila</a>
-          <a class="dropdown-item" href="bandoleras.html">Bandolera</a>
+          
+          
+          {% for cat in categorias %}
+          
+            <a class="dropdown-item" href="{% url 'listar_categoria' cat.id %}">{{cat.nombre }}</a>
+          {% endfor %}
+          
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="algo_mas.html">Ver todo</a>
+          <a class="dropdown-item" href="{% url 'productos' %}">Ver todo</a>
         </div>
       </li>
       
@@ -116,7 +121,7 @@
 
           {% endblock %}
       </div>
-
+          
     </main>
 
 <!-- Footer -->

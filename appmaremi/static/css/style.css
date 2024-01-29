@@ -153,3 +153,22 @@ section {
     margin-bottom: 10px;
 }
 }
+
+
+/* Estilos para el botón de opciones */
+.navbar-toggler {
+  background: url('{% static "imagenes/logo.jpg" %}') no-repeat center center;
+  background-size: contain;
+  border: none;
+  width: 40px; /* Ajusta el ancho según tus preferencias */
+  height: 40px; /* Ajusta la altura según tus preferencias */
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Estilos adicionales al pasar el ratón sobre el botón (opcional) */
+.navbar-toggler:hover {
+  background: url('{% static "imagenes/logo.jpg" %}') no-repeat center center;
+  background-size: contain;
+  filter: brightness(90%); /* Reduce ligeramente el brillo al pasar el ratón sobre él */
+}

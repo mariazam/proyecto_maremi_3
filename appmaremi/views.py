@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ContactoForm, ProductoForm
-from .models import Producto
+from .models import Categoria, Producto
 from django.contrib import messages
 
 from django.contrib.auth import authenticate, login
@@ -173,7 +173,7 @@ def vendedor(request):
 
 def tu_vista(request):
     # ... tu lógica para obtener el usuario
-
+        
     es_administrador = request.user.groups.filter(name='administrador').exists()
 
     return render(request, 'administrador.html', {'es_administrador': es_administrador})
@@ -185,6 +185,15 @@ def listar_productos2(request):
     return render(request, "productos.html", {'productos': productos})
 
 #vista del administrador
-def detalleProductos(request, producto_id):
+def detalleProducto(request, producto_id):
+
     producto = get_object_or_404(Producto, pk=producto_id)
-    return render(request, 'detalle_productos.html', {'producto': producto})
+    
+    return render(request, 'detalleProducto.html', {'producto': producto})
+
+def listar_categoria(request, categoria_id):
+    
+    productos = Producto.objects.filter(categoria = categoria_id, estado=1)
+    data = {'productos': productos}
+
+    return render(request, "listar_categoria.html", data)
