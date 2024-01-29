@@ -70,11 +70,13 @@
 
 .titulo {
     /*font-size: 2.5em;*/
+    font-size: 50px;
     color: #5e0d0d; /* Color del texto */
     margin-bottom: 10px;
     /* Utilizando la fuente Lobster desde Google Fonts */
     font-family: 'Lobster', Castellar;
   }
+
 
 
   /*datos del fomulario en negrita*/
@@ -166,9 +168,11 @@ section {
   transition: background 0.3s ease-in-out;
 }
 
+
 /* Estilos adicionales al pasar el ratón sobre el botón (opcional) */
 .navbar-toggler:hover {
   background: url('{% static "imagenes/logo.jpg" %}') no-repeat center center;
   background-size: contain;
   filter: brightness(90%); /* Reduce ligeramente el brillo al pasar el ratón sobre él */
 }
+

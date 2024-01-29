@@ -11,9 +11,12 @@ from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 def home(request):
 
-    messages.success(request, "este es mi primer")
+    productos = Producto.objects.all()
+    return render(request, "index.html",{'productos': productos})
 
-    return render(request, "index.html")
+# def carrusel(request):
+#     productos = Producto.objects.all()
+#     return render(request, "index.html",{'productos': productos})
 
 def productos(request):
     return render(request, "productos.html")
@@ -80,6 +83,15 @@ def listar_producto(request):
     }
 
     return render(request, "mantenedor/producto/listar.html", data)
+
+def listarProducto_vendedor(request):
+    productos= Producto.objects.all()
+
+    data = {
+        'mis_productos' : productos
+    }
+
+    return render(request, "mantenedor/vendedor/listarProducto_vendedor.html", data)
 
 #login_required=restrinje que alguien que no tenga permiso entre a la pg y lo dirije al login
 #permission_required = restrinje que alguien que no tenga permiso entre a la pg y lo dirije al login que solo pueda el admin
@@ -182,7 +194,7 @@ def tu_vista(request):
 
 def listar_productos2(request):
     productos = Producto.objects.all()
-    return render(request, "productos.html", {'productos': productos})
+    return render(request, "productos.html",{'productos': productos})
 
 #vista del administrador
 def detalleProducto(request, producto_id):
@@ -197,3 +209,4 @@ def listar_categoria(request, categoria_id):
     data = {'productos': productos}
 
     return render(request, "listar_categoria.html", data)
+

@@ -6,29 +6,29 @@
 
 <style>
   
-  .menu {
-    font-size: 30px;
-    color: #5e0d0d; /* Color del texto */
-    text-align: center;
-    margin-bottom: 20px;
-    /* Utilizando la fuente Lobster desde Google Fonts */
-    font-family: 'Lobster', Castellar;
-    background-color: rgba(94, 13, 13, 0.2);
-  }
-  .menu2 {
-    text-align: center;
-    /* Utilizando la fuente Lobster desde Google Fonts */
-    font-family: 'Lobster', Castellar;
-  }
-  /* Agrega un estilo personalizado para el enlace */
-  .enlace-agrandado {
+    .menu {
+        font-size: 30px;
+        color: #5e0d0d; /* Color del texto */
+        text-align: center;
+        margin-bottom: 20px;
+        /* Utilizando la fuente Lobster desde Google Fonts */
+        font-family: 'Lobster', Castellar;
+        background-color: rgba(94, 13, 13, 0.2);
+    }
+    .menu2 {
+        text-align: center;
+        /* Utilizando la fuente Lobster desde Google Fonts */
+        font-family: 'Lobster', Castellar;
+    }
+    /* Agrega un estilo personalizado para el enlace */
+   .enlace-agrandado {
         transition: transform 0.3s; /* Agrega una transición suave */
         transform-origin: top left; /* Cambia el origen de la transformación */
     }
 
     /* Define el aumento al pasar el ratón */
     .enlace-agrandado:hover {
-        transform: scale(4.2); /* Puedes ajustar el valor según tus preferencias */
+        transform: scale(.2); /* Puedes ajustar el valor según tus preferencias */
     }
     /* Agrega un estilo personalizado para el enlace */
     .enlace-agrandado2 {
@@ -51,13 +51,11 @@
       menu
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item menu2 my-2 enlace-agrandado2" href="{% url 'agregar_producto' %}">Agregar Producto</a></li>
-      <li><a class="dropdown-item menu2 my-2 enlace-agrandado2" href="{% url 'listar_producto' %}">Mantenedor Productos</a></li>
-      <li><a class="dropdown-item menu2 my-2 enlace-agrandado2" href="{% url 'registro' %}">Agregar Usuario</a></li>
+      <li><a class="dropdown-item menu2 my-2 enlace-agrandado2" href="{% url 'listarProducto_vendedor' %}">Listar Productos</a></li>
     </ul>
   </div>
 
-      {% block administrador %}
+      {% block vendedor %}
         
 
       {% endblock %}

@@ -21,31 +21,17 @@
                 </ol>
         
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <!--usando mx-auto para centrar la imagen-->
-                      <a href="mochilas.html" title="Mochila kawaii">
-                        <img src="{% static "imagenes/mochila.jpg" %}"  class="mx-auto  d-block w-75 h-75" alt="">
-                      </a>
-                    </div>
+                    
+                  {% for prod in productos %}
+                    {% if prod.estado == 1 %}
+                      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                          <a href="{% url 'detalleProducto' prod.id %}" title="{{ prod.nombre }}">
+                              <img src="{{ prod.foto.url }}" class="mx-auto d-block w-75 h-75" alt="">
+                          </a>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
 
-                    <div class="carousel-item">
-                      <a href="carteras.html" title="cartera">
-                        <img src="{% static "imagenes/cartera_negra.jpeg" %}" class="mx-auto  d-block w-75 h-75" alt="">
-                      </a>
-                    </div>
-
-                    <div class="carousel-item">
-                      <a href="carteras.html" title="cartera">
-                        <img src="{% static "imagenes/cartera_marron.jpg" %}"  class="mx-auto d-block w-75 h-75" alt="">
-                      </a>
-                    </div>
-
-                    <!-- Agrega la nueva imagen -->
-                    <div class="carousel-item">
-                      <a href="bandoleras.html" title="bandolera">
-                        <img src="{% static "imagenes/bandolera_rosa.jpg" %}" class="mx-auto d-block w-75 h-75" alt="">
-                      </a>
-                    </div>
 
                 </div>
         
@@ -72,6 +58,8 @@
 
         <div class="col-2"></div>
     </div>
+
+    
        
  </div>
  {% endblock %}

@@ -4,7 +4,7 @@
 
 {% load static %}
 
-{% block contenido %}
+{% block administrador %}
 
 <script>
     function eliminarProducto(id)
@@ -32,16 +32,14 @@
         <img src="{% static "imagenes/logo.jpg" %}" alt="Maremi" style="max-width: 600px;">
     </div>
     <br>
-    <h2 class="titulo">Listar un producto</h2>
+    <h2 class="titulo mb-4">Listar un producto</h2>
 
-    <div class = "card-body">   
-        <a href="{% url 'agregar_producto'  %}" class= "btn btn-success btn-sm" >Agregar Nuevo Producto</a>
-    </div>
 
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Codigo</th>
+            <th scope="col">Imagen</th>
             <th scope="col">Nombre</th>
             <th scope="col">Precio</th>
             <th scope="col">Cantidad</th>
@@ -56,6 +54,10 @@
             {% for p in mis_productos %}
             <tr>
                 <th scope="row">{{p.id}}</th>
+                <td>
+                    <img src="{{ p.foto.url }}" alt="Imagen" width="50"
+                        class="enlarge-image enlace-agrandado rounded">
+                </td>
                 <td>{{p.nombre}}</td>
                 <td>{{p.precio}}</td>
                 <td>{{p.cantidad}}</td>
