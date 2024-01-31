@@ -20,6 +20,7 @@ urlpatterns = [
     path('detalleProducto/<int:producto_id>/', detalleProducto, name='detalleProducto'),
     path('listar_categoria/<int:categoria_id>/', listar_categoria, name='listar_categoria'),  
     path('mantenedor/listarProducto_vendedor/', listarProducto_vendedor, name="listarProducto_vendedor"),
+    path('videos', videos, name="videos"),
 
 
 ]

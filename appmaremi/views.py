@@ -84,6 +84,7 @@ def listar_producto(request):
 
     return render(request, "mantenedor/producto/listar.html", data)
 
+#listar producto el vendedor 
 def listarProducto_vendedor(request):
     productos= Producto.objects.all()
 
@@ -118,6 +119,8 @@ def modificar_producto(request, id_buscado):
     return render(request, "mantenedor/producto/modificar.html", data)
 
 #este  se usa en el listar
+#get_object_or_404 Es una función llama al modelo dado y obtiene el objeto de eso.
+
 def eliminar_producto(request, id_buscado):
 
     productos= get_object_or_404(Producto, id=id_buscado)
@@ -131,7 +134,9 @@ def login_usuario(request):
     print("Bienvenido:"+ request.user.username)
     return redirect(to="home")
 
-#metodo de registrar
+#metodo de registrar usuarios  solo el admin 
+@login_required(login_url="login")
+@permission_required(['appmaremi.add_producto'], login_url="login")
 def registro(request):
 
     data = {
@@ -140,7 +145,7 @@ def registro(request):
 
     if request.method == "POST":
 
-        nombre = request.POST.get("nombre")
+        nombre = request.POST.get("nombre")  #request.POST.get("nombre") para obtener ese dato
         apellido = request.POST.get("apellido")
         correo = request.POST.get("correo")
         password = request.POST.get("password")
@@ -181,7 +186,7 @@ def vendedor(request):
 
 #Metodo para poder distingir los usuarios logiados
 #este metodo ayuda a distingir si el usuario es vendedor o admin a
-#pero no funciona 
+#pero no funciona por hacer 
 
 def tu_vista(request):
     # ... tu lógica para obtener el usuario
@@ -191,7 +196,8 @@ def tu_vista(request):
     return render(request, 'administrador.html', {'es_administrador': es_administrador})
 
 
-
+#es para poder mandar todos los productos a productos y listarlos todos
+#producto
 def listar_productos2(request):
     productos = Producto.objects.all()
     return render(request, "productos.html",{'productos': productos})
@@ -203,6 +209,10 @@ def detalleProducto(request, producto_id):
     
     return render(request, 'detalleProducto.html', {'producto': producto})
 
+#listar por cada categoria 
+#use Producto.objects.filter(categoria = categoria_id, estado=1)
+#para que dar una codicion de que el id categoria sea igual al id categoria que me pasa y sea estado 1
+#aprobado para pasarselo al listar por categoria ya filtrado 
 def listar_categoria(request, categoria_id):
     
     productos = Producto.objects.filter(categoria = categoria_id, estado=1)
@@ -210,3 +220,17 @@ def listar_categoria(request, categoria_id):
 
     return render(request, "listar_categoria.html", data)
 
+
+#no va 
+def buscar_producto(request):
+    if request.method == 'GET':
+        query = request.GET.get('q')
+        resultados = Producto.objects.filter(nombre__icontains=query)
+        return render(request, 'buscar_producto.html', {'resultados': resultados})
+    else:
+        return render(request, 'buscar_producto.html')
+    
+#vista del administrador
+def videos(request):
+
+    return render(request, "video.html")

@@ -2,12 +2,15 @@
 {% block contenido %}
 {% load static %}
 
+ <!-- lista todos los productos -->
 <div class="container" style="margin-top: 50px">
   <h2>Productos</h2>
   <div id="profesionales_excelencia" class="row">
       <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="cont-listado row">
+            <!-- use metodo listar_productos2 para traerme todos los productos de la base de datos "productos"-->
             {% for prod in productos %}
+            <!--use una condicion para que solo se muestren los productos que estan aprodados por el admin-->
             {% if prod.estado == 1 %}
                 <figure>
                     <a href="{% url 'detalleProducto' prod.id %}">
@@ -15,7 +18,7 @@
                     </a>
                     <h4 class="nombre white">{{ prod.titulo }}</h4>
                     <h4 class="nombre white text-danger">{{ prod.categoria }}</h4>
-                    <h4 class="nombre white">Precio: {{ prod.precio }}</h4>
+                    <h4 class="nombre white">Precio: ${{ prod.precio }}</h4>
                 </figure>
             {% endif %}
             {% endfor %}

@@ -19,20 +19,21 @@
                     <!-- Agrega un nuevo indicador para la nueva imagen -->
                     <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                 </ol>
-        
+                
+                <!-- use el metodo listar_productos2 para traerme todos los  producto -->
                 <div class="carousel-inner">
                     
                   {% for prod in productos %}
                     {% if prod.estado == 1 %}
+                      <!-- -->
                       <div class="carousel-item {% if forloop.first %}active{% endif %}">
                           <a href="{% url 'detalleProducto' prod.id %}" title="{{ prod.nombre }}">
                               <img src="{{ prod.foto.url }}" class="mx-auto d-block w-75 h-75" alt="">
                           </a>
                       </div>
+
                     {% endif %}
                   {% endfor %}
-
-
                 </div>
         
                 <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
