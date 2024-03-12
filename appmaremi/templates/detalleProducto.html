@@ -2,49 +2,87 @@
 
 {% load static %}
 
-
 {% block contenido %}
+    <style>
+        /* Estilos para mejorar la apariencia */
+        .titulo {
+            color: #007BFF; /* Color azul */
+            text-align: center;
+        }
+
+        .producto-imagen {
+            max-width: 400px;
+            height: auto;
+            margin: 20px auto; /* Añade espacio alrededor de la imagen */
+            display: block;
+        }
+
+        .nombre-producto {
+            color: #DC3545; /* Color rojo oscuro */
+            font-size: 60px;
+            text-align: center;
+        }
+
+        .titulo-adicional {
+            background-color: #DC3545; /* Color de fondo rojo oscuro */
+            color: #FFFFFF; /* Color de texto blanco */
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .precio {
+            color: #28A745; /* Color verde */
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .descripcion {
+            color: #343A40; /* Color gris oscuro */
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 
     <h2 class="titulo">Producto</h2>
 
     <!-- Imagen del producto -->
-<section class="container ">
-    <div class="row">
-        <div class="col">
-            <img src="{{ producto.foto.url }}" class="rounded mx-auto d-block" alt="..."
-            style="max-width: 400px; height: auto;">
-        </div>
-    </div>
-</section>
-
-<!-- Información del producto -->
-<section class="container">
+    <section class="container">
         <div class="row">
             <div class="col text-center">
+                <img src="{{ producto.foto.url }}" class="producto-imagen rounded" alt="...">
+            </div>
+        </div>
+    </section>
 
-                <h1 class=" text-danger fw-bold" style="font-size: 60px;">
+    <!-- Información del producto -->
+    <section class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="nombre-producto">
                     {{ producto.nombre }}
                 </h1>
 
-                <h1 class="text-danger text-bg-dark fw-bold rounded my-4">
+                <h1 class="titulo-adicional">
                     {{ producto.titulo }}
                 </h1>
 
                 <hr>
-                
-                <h3 class="text-dark fw-bold my-4">
+
+                <h3 class="precio">
                     Precio: ${{ producto.precio }}
-                </h3>                
-                
+                </h3>
+
                 <hr>
-                
-                <h3 class="text-dark fw-bold my-4">
+
+                <h3 class="descripcion">
                     Descripción: {{ producto.mensaje }}
                 </h3>
-                
             </div>
         </div>
-    </div>
-</section>
-    
+    </section>
 {% endblock %}

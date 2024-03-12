@@ -2,11 +2,29 @@
 {% block contenido %}
 {% load static %}
 
+<style>
+    /* Estilos para mejorar la apariencia */
+    .cont-listado {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    figure {
+        margin: 10px;
+        text-align: center;
+    }
+
+    h4 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+</style>
+
 <div class="container" style="margin-top: 50px">
     <div id="profesionales_excelencia" class="row">
         <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="cont-listado row">
-                <!--use metodo listar_categoria -->
                 {% for prod in productos %}
                         <figure>
                             <a href="{% url 'detalleProducto' prod.id %}">
@@ -16,7 +34,7 @@
                             </a>
                             <h4 class="nombre white">{{ prod.nombre }}</h4>
                             <h4 class="nombre white text-danger">{{ prod.categoria.nombre }}</h4>
-                            <h4 class="nombre white">Precio:$ {{ prod.precio }}</h4>
+                            <h4 class="nombre white">Precio: ${{ prod.precio }}</h4>
                         </figure>
                 {% endfor %}
             </div>

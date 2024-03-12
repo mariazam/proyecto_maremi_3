@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script type="text/javascript" src="{% static 'js/validaciones.js' %}"></script>
+    
 </head>
 <body>
   
@@ -82,9 +83,12 @@
       </li>
     </ul>
     <!--buscador-->
-    <form class="form-inline my-2 my-lg-0 mr-3">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    <form class="form-inline my-2 my-lg-0 mr-3" method="get" action="{% url 'buscar_productos' %}">
+      <input type="text" name="q" value="{{ query }}" placeholder="Buscar productos...">
+      <div id="resultados"></div>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        <a href="{% url 'buscar_productos' %}">Buscar Productos</a>
+      </button>
       
     </form>
 

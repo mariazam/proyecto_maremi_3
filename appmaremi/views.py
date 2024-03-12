@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required, permission_required
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -234,3 +236,9 @@ def buscar_producto(request):
 def videos(request):
 
     return render(request, "video.html")
+
+def buscar_productos(request):
+    query = request.GET.get('q', '')  # Obtiene la consulta de búsqueda desde la URL
+    resultados = Producto.objects.filter(nombre__icontains=query)  # Filtra los productos según la consulta
+
+    return render(request, 'buscar_productos.html', {'resultados': resultados, 'query': query})
